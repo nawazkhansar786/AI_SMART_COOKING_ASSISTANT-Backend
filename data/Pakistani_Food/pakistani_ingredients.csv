@@ -1,0 +1,583 @@
+recipe_id,ingredient_number,ingredient_name,quantity
+RCP00001,1,Chicken,750 g
+RCP00001,2,Tomato,500 g
+RCP00001,3,Yogurt,100 g
+RCP00001,4,Ginger,1 tbsp
+RCP00001,5,Garlic,1 tbsp
+RCP00001,6,Chilli Pepper,4 piece
+RCP00001,7,Chilli Pepper powder,1 tsp
+RCP00001,8,Cumin,1 tsp
+RCP00001,9,Coriander powder,1 tsp
+RCP00001,10,Salt,1 tsp
+RCP00001,11,Oil,5 tbsp
+RCP00001,12,Fresh coriander ,2 tbsp
+RCP00002,1,Chicken,750 g
+RCP00002,2,Yogurt,200 g
+RCP00002,3,Tomato,250 g
+RCP00002,4,Cream,100 ml
+RCP00002,5,Onion,1 medium
+RCP00002,6,Garlic,2 tbsp
+RCP00002,7,Ginger,2 tbsp
+RCP00002,8,Chilli Pepper powder,1 tsp
+RCP00002,9,Turmeric,½ tsp
+RCP00002,10,Garam masala,1 tsp
+RCP00002,10,Salt,1 tsp
+RCP00002,11,Oil,4 tbsp
+RCP00003,1,Chicken,750 g
+RCP00003,2,Rice,500 g
+RCP00003,3,Onion,3 piece
+RCP00003,4,Tomato,3 piece
+RCP00003,5,Yogurt,200 g
+RCP00003,6,Potato,2 piece
+RCP00003,7,Garlic,2 tbsp
+RCP00003,8,Ginger,2 tbsp
+RCP00003,9,Biryani masala,2 tbsp
+RCP00003,10,Chilli Pepper,4 piece
+RCP00003,11,Mint,½ cup
+RCP00003,12,Coriander,½ cup
+RCP00003,13,Oil,150 ml
+RCP00003,13,Salt,to taste
+RCP00004,1,Chicken,750 g
+RCP00004,2,Yogurt,250 g
+RCP00004,3,Onion,3 piece
+RCP00004,4,Ginger,2 tbsp
+RCP00004,5,Garlic,2 tbsp
+RCP00004,6,Almonds,2 tbsp
+RCP00004,7,Cashews,2 tbsp
+RCP00004,8,Chilli Pepper,1 tsp
+RCP00004,9,Coriander powder,1 tsp
+RCP00004,10,Garam masala,1 tsp
+RCP00004,11,Oil,100 ml
+RCP00004,12,Salt,to taste
+RCP00005,1,Chicken,500 g
+RCP00005,2,Capsicum,2 piece
+RCP00005,3,Tomato,3 piece
+RCP00005,4,Onion,1 piece
+RCP00005,5,Carrot,1 piece
+RCP00005,6,Chilli Pepper,2 piece
+RCP00005,7,Ginger,1 tbsp
+RCP00005,8,Garlic,1 tbsp
+RCP00005,9,Chilli Pepper powder,1 tsp
+RCP00005,10,Black pepper,½ tsp
+RCP00005,11,Soy sauce,1 tbsp
+RCP00005,12,Oil,3 tbsp
+RCP00005,13,Salt,to taste
+RCP00006,1,Chicken,750 g
+RCP00006,2,Tomato,400 g
+RCP00006,3,Butter,50 g
+RCP00006,4,Cream,150 ml
+RCP00006,5,Yogurt,100 g
+RCP00006,6,Ginger,1 tbsp
+RCP00006,7,Garlic,1 tbsp
+RCP00006,8,Chilli Pepper,1 tsp
+RCP00006,9,Garam masala,½ tsp
+RCP00006,10,Sugar,1 tsp
+RCP00006,11,Salt,to taste
+RCP00007,1,Chicken,600 g
+RCP00007,2,Spinach,500 g
+RCP00007,3,Onion,1 piece
+RCP00007,4,Tomato,2 piece
+RCP00007,5,Ginger,1 tbsp
+RCP00007,6,Garlic,1 tbsp
+RCP00007,7,Chilli Pepper,2 piece
+RCP00007,8,Chilli Pepper,1 tsp
+RCP00007,9,Turmeric,½ tsp
+RCP00007,10,Oil,4 tbsp
+RCP00007,11,Salt,to taste
+RCP00008,1,Chicken,750 g
+RCP00008,2,Yogurt,150 g
+RCP00008,3,Lemon,2 tbsp
+RCP00008,4,Garlic,1 tbsp
+RCP00008,5,Ginger,1 tbsp
+RCP00008,6,Tikka masala,2 tbsp
+RCP00008,7,Chilli Pepper,1 tsp
+RCP00008,8,Oil,2 tbsp
+RCP00008,9,Salt,to taste
+RCP00009,1,Chicken,500 g
+RCP00009,2,Rice,500 g
+RCP00009,3,Onion,2 piece
+RCP00009,4,Yogurt,100 g
+RCP00009,5,Ginger,1 tbsp
+RCP00009,6,Garlic,1 tbsp
+RCP00009,7,Cumin,1 tsp
+RCP00009,8,Black pepper,1 tsp
+RCP00009,9,Cinnamon,1 stick
+RCP00009,10,Cardamom,3 piece
+RCP00009,11,Salt,to taste
+RCP00009,12,Oil,5 tbsp
+RCP00010,1,Rice,500 g
+RCP00010,2,Chicken,500 g
+RCP00010,3,Onion,2 piece
+RCP00010,4,Ginger,1 tbsp
+RCP00010,5,Garlic,1 tbsp
+RCP00010,6,Cumin,1 tsp
+RCP00010,7,Cinnamon,1 stick
+RCP00010,8,Cardamom,4 piece
+RCP00010,9,Black pepper,8 piece
+RCP00010,10,Salt,to taste
+RCP00011,1,Rice,500 g
+RCP00011,2,Carrot,1 piece
+RCP00011,3,Potato,1 piece
+RCP00011,4,Corn,1 cup
+RCP00011,5,Peas,1 cup
+RCP00011,6,Onion,1 piece
+RCP00011,7,Cumin,1 tsp
+RCP00011,8,Whole spices,1 tsp
+RCP00011,9,Oil,4 tbsp
+RCP00011,10,Salt,to taste
+RCP00012,1,Chicken,750 g
+RCP00012,2,Rice,500 g
+RCP00012,3,Potato,2 piece
+RCP00012,4,Tomato,3 piece
+RCP00012,5,Yogurt,200 g
+RCP00012,6,Onion,3 piece
+RCP00012,7,Biryani masala,2 tbsp
+RCP00012,8,Chilli Pepper,4 piece
+RCP00012,9,Mint,½ cup
+RCP00012,10,Coriander,½ cup
+RCP00012,11,Oil,150 ml
+RCP00012,12,Salt,to taste
+RCP00013,1,Rice,500 g
+RCP00013,2,Cumin seeds,2 tbsp
+RCP00013,3,Butter,2 tbsp
+RCP00013,4,Oil,1 tbsp
+RCP00013,5,Salt,1 tsp
+RCP00013,6,Water,as required
+RCP00014,1,Rice,500 g
+RCP00014,2,Tomato,2 piece
+RCP00014,3,Onion,1 piece
+RCP00014,4,Carrot,1 piece
+RCP00014,5,Capsicum,1 piece
+RCP00014,6,Corn,½ cup
+RCP00014,7,Chilli Pepper,1 tsp
+RCP00014,8,Garam masala,½ tsp
+RCP00014,9,Oil,3 tbsp
+RCP00014,10,Salt,to taste
+RCP00015,1,okra,500 g
+RCP00015,2,Tomato,3 piece
+RCP00015,3,Onion,1 piece
+RCP00015,4,Ginger,1 tbsp
+RCP00015,5,Garlic,1 tbsp
+RCP00015,6,Chilli Pepper,1 tsp
+RCP00015,7,Turmeric,½ tsp
+RCP00015,8,Coriander powder,1 tsp
+RCP00015,9,Oil,4 tbsp
+RCP00015,10,Salt,to taste
+RCP00016,1,okra,500 g
+RCP00016,2,Onion,3 piece
+RCP00016,3,Tomato,2 piece
+RCP00016,4,Yogurt,100 g
+RCP00016,5,Ginger,1 tbsp
+RCP00016,6,Garlic,1 tbsp
+RCP00016,7,Chilli Pepper,1 tsp
+RCP00016,8,Cumin,1 tsp
+RCP00016,9,Oil,4 tbsp
+RCP00016,10,Salt,to taste
+RCP00017,1,okra,500 g
+RCP00017,2,Flour,½ cup
+RCP00017,3,Rice,2 tbsp
+RCP00017,4,Chilli Pepper,1 tsp
+RCP00017,5,Chaat masala,1 tsp
+RCP00017,6,Turmeric, ½ tsp
+RCP00017,7,Salt,to taste
+RCP00017,8,Oil,for frying
+RCP00018,1,Potato,3 piece
+RCP00018,2,Cauliflower,500 g
+RCP00018,3,Tomato,2 piece
+RCP00018,4,Onion,1 piece
+RCP00018,5,Ginger,1 tbsp
+RCP00018,6,Garlic,1 tbsp
+RCP00018,7,Turmeric,½ tsp
+RCP00018,8,Chilli Pepper,1 tsp
+RCP00018,9,Coriander,1 tsp
+RCP00018,10,Oil,4 tbsp
+RCP00018,11,Salt,to taste
+RCP00019,1,Carrot,1 piece
+RCP00019,2,Potato,2 piece
+RCP00019,3,Cauliflower,200 g
+RCP00019,4,Corn,½ cup
+RCP00019,5,Peas,½ cup
+RCP00019,6,Capsicum,1 piece
+RCP00019,7,Onion,1 piece
+RCP00019,8,Tomato,2 piece
+RCP00019,9,Spices,to taste
+RCP00019,10,Oil,4 tbsp
+RCP00020,1,Potato,3 piece
+RCP00020,2,Capsicum,3 piece
+RCP00020,3,Onion,1 piece
+RCP00020,4,Tomato,2 piece
+RCP00020,5,Cumin,1 tsp
+RCP00020,6,Chilli Pepper,1 tsp
+RCP00020,7,Turmeric,½ tsp
+RCP00020,8,Oil,4 tbsp
+RCP00020,9,Salt,to taste
+RCP00021,1,Carrot,500 g
+RCP00021,2,Peas,1 cup
+RCP00021,3,Onion,1 piece
+RCP00021,4,Tomato,2 piece
+RCP00021,5,Ginger,1 tbsp
+RCP00021,6,Garlic,1 tbsp
+RCP00021,7,Chilli Pepper,1 tsp
+RCP00021,8,Turmeric,½ tsp
+RCP00021,9,Oil,3 tbsp
+RCP00021,10,Salt,to taste
+RCP00022,1,Carrot,1 piece
+RCP00022,2,Potato,1 piece
+RCP00022,3,Capsicum,1 piece
+RCP00022,4,Cauliflower,200 g
+RCP00022,5,Corn,½ cup
+RCP00022,6,Yogurt,150 g
+RCP00022,7,Cream,100 ml
+RCP00022,8,Tomato,2 piece
+RCP00022,9,Spices,to taste
+RCP00022,10,Oil,4 tbsp
+RCP00023,1,Chickpeas,1 cup
+RCP00023,2,Onion,1 piece
+RCP00023,3,Tomato,2 piece
+RCP00023,4,Ginger,1 tbsp
+RCP00023,5,Garlic,1 tbsp
+RCP00023,6,Turmeric,½ tsp
+RCP00023,7,Chilli Pepper,1 tsp
+RCP00023,8,Cumin,1 tsp
+RCP00023,9,Oil,3 tbsp
+RCP00023,10,Salt,to taste
+RCP00024,1,Lentils,1 cup
+RCP00024,2,Tomato,2 piece
+RCP00024,3,Onion,1 piece
+RCP00024,4,Garlic,1 tbsp
+RCP00024,5,Ginger,1 tbsp
+RCP00024,6,Chilli Pepper,1 tsp
+RCP00024,7,Turmeric,½ tsp
+RCP00024,8,Cumin,1 tsp
+RCP00024,9,Oil,4 tbsp
+RCP00024,10,Salt,to taste
+RCP00025,1,Lentils,1 cup
+RCP00025,2,Tomato,2 piece
+RCP00025,3,Onion,1 piece
+RCP00025,4,Garlic,1 tbsp
+RCP00025,5,Ginger,1 tbsp
+RCP00025,6,Turmeric,½ tsp
+RCP00025,7,Chilli Pepper,1 tsp
+RCP00025,8,Cumin,1 tsp
+RCP00025,9,Oil,3 tbsp
+RCP00025,10,Salt,to taste
+RCP00026,1,Lentils,1 cup
+RCP00026,2,Tomato,2 piece
+RCP00026,3,Onion,1 piece
+RCP00026,4,Garlic,5 cloves
+RCP00026,5,Cumin,1 tsp
+RCP00026,6,Chilli Pepper,2 piece
+RCP00026,7,Turmeric, ½ tsp
+RCP00026,8,Butter,1 tbsp
+RCP00026,9,Oil,2 tbsp
+RCP00026,10,Salt,to taste
+RCP00027,1,Lentils,1 cup
+RCP00027,2,Spinach,300 g
+RCP00027,3,Tomato,2 piece
+RCP00027,4,Onion,1 piece
+RCP00027,5,Ginger,1 tbsp
+RCP00027,6,Garlic,1 tbsp
+RCP00027,7,Turmeric,½ tsp
+RCP00027,8,Chilli Pepper,1 tsp
+RCP00027,9,Oil,3 tbsp
+RCP00027,10,Salt,to taste
+RCP00028,1,Chickpeas,2 cups
+RCP00028,2,Tomato,3 piece
+RCP00028,3,Onion,1 piece
+RCP00028,4,Garlic,1 tbsp
+RCP00028,5,Ginger,1 tbsp
+RCP00028,6,Chana masala,1 tbsp
+RCP00028,7,Chilli Pepper,1 tsp
+RCP00028,8,Oil,4 tbsp
+RCP00028,9,Salt,to taste
+RCP00029,1,Chickpeas,2 cups
+RCP00029,2,Potato,2 piece
+RCP00029,3,Tomato,2 piece
+RCP00029,4,Onion,1 piece
+RCP00029,5,Ginger,1 tbsp
+RCP00029,6,Garlic,1 tbsp
+RCP00029,7,Chilli Pepper,1 tsp
+RCP00029,8,Turmeric,½ tsp
+RCP00029,9,Oil,4 tbsp
+RCP00029,10,Salt,to taste
+RCP00030,1,Chickpeas,1½ cups
+RCP00030,2,Rice,500 g
+RCP00030,3,Onion,2 piece
+RCP00030,4,Cumin,1 tsp
+RCP00030,5,Cinnamon,1 stick
+RCP00030,6,Cardamom,3 piece
+RCP00030,7,Garlic,1 tbsp
+RCP00030,8,Ginger,1 tbsp
+RCP00030,9,Oil,4 tbsp
+RCP00030,10,Salt,to taste
+RCP00031,1,Chickpeas,2 cups
+RCP00031,2,Yogurt,100 g
+RCP00031,3,Tomato,2 piece
+RCP00031,4,Onion,1 piece
+RCP00031,5,Garlic,1 tbsp
+RCP00031,6,Ginger,1 tbsp
+RCP00031,7,Chilli Pepper,1 tsp
+RCP00031,8,Coriander powder,1 tsp
+RCP00031,9,Oil,4 tbsp
+RCP00031,10,Salt,to taste
+RCP00032,1,Egg,6 piece
+RCP00032,2,Tomato,3 piece
+RCP00032,3,Onion,1 piece
+RCP00032,4,Garlic,1 tbsp
+RCP00032,5,Ginger,1 tbsp
+RCP00032,6,Chilli Pepper,1 tsp
+RCP00032,7,Turmeric,½ tsp
+RCP00032,8,Coriander powder,1 tsp
+RCP00032,9,Oil,4 tbsp
+RCP00032,10,Salt,to taste
+RCP00033,1,Egg,6 piece
+RCP00033,2,Onion,2 piece
+RCP00033,3,Tomato,2 piece
+RCP00033,4,Capsicum,1 piece
+RCP00033,5,Chilli Pepper,2 piece
+RCP00033,6,Chilli Pepper,½ tsp
+RCP00033,7,Black pepper,½ tsp
+RCP00033,8,Oil,3 tbsp
+RCP00033,9,Salt,to taste
+RCP00034,1,Egg,3 piece
+RCP00034,2,Onion,½
+RCP00034,3,Tomato,1 piece
+RCP00034,4,Chilli Pepper,1 piece
+RCP00034,5,Coriander,1 tbsp
+RCP00034,6,Black pepper,½ tsp
+RCP00034,7,Salt,to taste
+RCP00034,8,Oil,1 tbsp
+RCP00035,1,Egg,4 piece
+RCP00035,2,Tomato,4 piece
+RCP00035,3,Onion,1 piece
+RCP00035,4,Capsicum,1 piece
+RCP00035,5,Garlic,2 cloves
+RCP00035,6,Chilli Pepper,½ tsp
+RCP00035,7,Cumin,½ tsp
+RCP00035,8,Black pepper, ½ tsp
+RCP00035,9,Oil,2 tbsp
+RCP00035,10,Salt,to taste
+RCP00036,1,Potato,500 g
+RCP00036,2,Cumin,2 tsp
+RCP00036,3,Chilli Pepper,2 piece
+RCP00036,4,Chilli Pepper,½ tsp
+RCP00036,5,Turmeric,¼ tsp
+RCP00036,6,Oil,3 tbsp
+RCP00036,7,Salt,to taste
+RCP00036,8,Coriander,2 tbsp
+RCP00037,1,Potato,500 g
+RCP00037,2,Tomato,2 piece
+RCP00037,3,Onion,1 piece
+RCP00037,4,Garlic,1 tbsp
+RCP00037,5,Ginger,1 tbsp
+RCP00037,6,Chilli Pepper,1 tsp
+RCP00037,7,Turmeric,½ tsp
+RCP00037,8,Coriander powder,1 tsp
+RCP00037,9,Oil,4 tbsp
+RCP00037,10,Salt,to taste
+RCP00038,1,Potato,400 g
+RCP00038,2,Spinach,400 g
+RCP00038,3,Tomato,2 piece
+RCP00038,4,Onion,1 piece
+RCP00038,5,Garlic,1 tbsp
+RCP00038,6,Ginger,1 tbsp
+RCP00038,7,Chilli Pepper,1 tsp
+RCP00038,8,Turmeric,½ tsp
+RCP00038,9,Oil,4 tbsp
+RCP00038,10,Salt,to taste
+RCP00039,1,Potato,500 g
+RCP00039,2,Corn flour,2 tbsp
+RCP00039,3,Chilli Pepper,1 tsp
+RCP00039,4,Black pepper,½ tsp
+RCP00039,5,Chaat masala,1 tsp
+RCP00039,6,Salt,to taste
+RCP00039,7,Oil,for frying
+RCP00040,1,Corn,2 cups
+RCP00040,2,Tomato,2 piece
+RCP00040,3,Onion,1 piece  
+RCP00040,4,Capsicum,1 piece
+RCP00040,5,Garlic,1 tsp
+RCP00040,6,Ginger,1 tsp
+RCP00040,7,Chilli Pepper,½ tsp
+RCP00040,8,Garam masala,½ tsp
+RCP00040,9,Oil,2 tbsp
+RCP00040,10,Salt,to taste
+RCP00041,1,Rice,500 g
+RCP00041,2,Corn,1½ cups
+RCP00041,3,Onion,1 piece
+RCP00041,4,Cumin,1 tsp
+RCP00041,5,Chilli Pepper,2 piece
+RCP00041,6,Cinnamon,1 stick
+RCP00041,7,Oil,3 tbsp
+RCP00041,8,Salt,to taste
+RCP00042,1,Corn,2 cups
+RCP00042,2,Cream,150 ml
+RCP00042,3,Yogurt,100 g
+RCP00042,4,Onion,1 piece
+RCP00042,5,Tomato,1 piece
+RCP00042,6,Garlic,1 tsp
+RCP00042,7,Ginger,1 tsp
+RCP00042,8,Black pepper,½ tsp
+RCP00042,9,Garam masala,½ tsp
+RCP00042,10,Butter,2 tbsp
+RCP00042,11,Salt,to taste
+RCP00043,1,Chicken,750 g
+RCP00043,2,Yogurt,250 g
+RCP00043,3,Onion,2 piece
+RCP00043,4,Ginger-garlic,1 tbsp
+RCP00043,5,Chilli Pepper,1 tsp
+RCP00043,6,Coriander powder,1 tsp
+RCP00043,7,Garam masala,½ tsp
+RCP00043,8,Oil,4 tbsp
+RCP00043,9,Salt,to taste
+RCP00044,1,Potato,500 g
+RCP00044,2,Yogurt,250 g
+RCP00044,3,Tomato,1 piece
+RCP00044,4,Cumin,1 tsp
+RCP00044,5,Chilli Pepper,½ tsp
+RCP00044,6,Turmeric,¼ tsp
+RCP00044,7,Chilli Pepper,2 piece
+RCP00044,8,Oil,3 tbsp
+RCP00044,9,Salt,to taste
+RCP00045,1,Yogurt,500 g
+RCP00045,2,Flour,½ cup
+RCP00045,3,Onion,1 piece
+RCP00045,4,Tomato,1 piece
+RCP00045,5,Turmeric,½ tsp
+RCP00045,6,Chilli Pepper,1 tsp
+RCP00045,7,Cumin,1 tsp
+RCP00045,8,Oil,3 tbsp
+RCP00045,9,Salt,to taste
+RCP00046,1,Chicken,600 g
+RCP00046,2,Spinach,500 g
+RCP00046,3,Tomato,2 piece
+RCP00046,4,Onion,1 piece
+RCP00046,5,Ginger-garlic,1 tbsp
+RCP00046,6,Chilli Pepper,2 piece
+RCP00046,7,Chilli Pepper,1 tsp
+RCP00046,8,Oil,4 tbsp
+RCP00046,9,Salt,to taste
+RCP00047,1,Spinach,500 g
+RCP00047,2,Paneer,300 g
+RCP00047,3,Tomato,2 piece
+RCP00047,4,Onion,1 piece
+RCP00047,5,Ginger-garlic,1 tbsp
+RCP00047,6,Chilli Pepper,2 piece
+RCP00047,7,Cream,50 ml
+RCP00047,8,Oil,3 tbsp
+RCP00047,9,Salt,to taste
+RCP00048,1,Lentils,500 g
+RCP00048,2,Spinach,300 g
+RCP00048,3,Tomato,2 piece
+RCP00048,4,Onion,1 piece
+RCP00048,5,Garlic,1 tbsp
+RCP00048,6,Turmeric,2 piece
+RCP00048,7,Chilli Pepper,50 ml
+RCP00048,8,Oil,3 tbsp
+RCP00048,9,Salt,to taste
+RCP00049,1,Flour,2 cups
+RCP00049,2,Potato,3 piece
+RCP00049,3,Chilli Pepper,2 piece
+RCP00049,4,Coriander,2 tbsp
+RCP00049,5,Chilli Pepper,½ tsp
+RCP00049,6,Cumin,½ tsp
+RCP00049,7,Salt,to taste
+RCP00049,8,Oil/ghee,as required
+RCP00050,1,Flour,2 cups
+RCP00050,2,Cooked chicken,250 g
+RCP00050,3,Onion,1 piece
+RCP00050,4,Chilli Pepper,2 piece
+RCP00050,5,Coriander,2 tbsp
+RCP00050,6,Black pepper,½ tsp
+RCP00050,7,Salt,to taste
+RCP00050,8,Oil,as required
+RCP00051,1,Carrot,500 g
+RCP00051,2,Peas,1 cup
+RCP00051,3,Onion,1 piece
+RCP00051,4,Tomato,2 piece
+RCP00051,5,Ginger-garlic,1 tbsp
+RCP00051,6,Chilli Pepper,1 tsp
+RCP00051,7,Turmeric,½ tsp
+RCP00051,8,Oil,3 tbsp
+RCP00051,9,Salt,to taste
+RCP00052,1,Carrot,500 g
+RCP00052,2,Onion,1 piece
+RCP00052,3,Tomato,2 piece
+RCP00052,4,Cumin,1 tsp
+RCP00052,5,Chilli Pepper,½ tsp
+RCP00052,6,Turmeric,¼ tsp
+RCP00052,7,Coriander powder,1 tsp
+RCP00052,8,Oil,3 tbsp
+RCP00052,9,Salt,to taste
+RCP00053,1,Chicken,250 g
+RCP00053,2,Corn,1 cup
+RCP00053,3,Egg,1 piece
+RCP00053,4,Chicken stock,4 cups
+RCP00053,5,Corn flour,2 tbsp
+RCP00053,6,Soy sauce,1 tbsp
+RCP00053,7,Black pepper,½ tsp
+RCP00053,8,Vinegar,1 tbsp
+RCP00053,9,Salt,to taste
+RCP00054,1,Chicken,200 g
+RCP00054,2,Carrot,1 piece
+RCP00054,3,Corn,½ cup
+RCP00054,4,Cabbage,½ cup
+RCP00054,5,Chicken stock,4 cups
+RCP00054,6,Soy sauce,1 tbsp
+RCP00054,7,Vinegar,1 tbsp
+RCP00054,8,Chilli sauce,1 tbsp
+RCP00054,9,Corn flour,2 tbsp
+RCP00054,10,Black pepper,½ tsp
+RCP00054,11,Salt,to taste
+RCP00055,1,Chicken,300 g
+RCP00055,2,Water,6 cups
+RCP00055,3,Carrot,1 piece
+RCP00055,4,Onion,1 piece
+RCP00055,5,Garlic,3 cloves
+RCP00055,6,Ginger,1 piece
+RCP00055,7,Black pepper,1 tsp
+RCP00055,8,Salt,to taste
+RCP00055,9,Coriander,2 tbsp
+RCP00056,1,Lentils,1 cup
+RCP00056,2,Carrot,1 piece
+RCP00056,3,Tomato,2 piece
+RCP00056,4,Onion,1 piece
+RCP00056,5,Garlic,2 cloves
+RCP00056,6,Turmeric,½ tsp
+RCP00056,7,Black pepper,½ tsp
+RCP00056,8,Water,5 cups
+RCP00056,9,Salt,to taste
+RCP00057,1,Carrot,1 piece
+RCP00057,2,Potato,1 piece
+RCP00057,3,Corn,½ cup
+RCP00057,4,Cauliflower,1 cup
+RCP00057,5,Onion,1 piece
+RCP00057,6,Milk,1 cup
+RCP00057,7,Cream,100 ml
+RCP00057,8,Vegetable stock,4 cups
+RCP00057,9,Black pepper,½ tsp
+RCP00057,10,Butter,2 tbsp
+RCP00057,11,Salt,to taste
+RCP00058,1,Carrot,1 kg
+RCP00058,2,Milk,1 litre
+RCP00058,3,Sugar,200 g
+RCP00058,4,Ghee,4 tbsp
+RCP00058,5,Cardamom,4 piece
+RCP00058,6,Khoya,150 g
+RCP00058,7,Almonds,2 tbsp
+RCP00058,8,Pistachios,2 tbsp
+RCP00059,1,Bread,6 slices
+RCP00059,2,Milk,1 litre
+RCP00059,3,Sugar,150 g
+RCP00059,4,Cream,100 ml
+RCP00059,5,Cardamom,3 piece
+RCP00059,6,Almonds,2 tbsp
+RCP00059,7,Pistachios,2 tbsp
+RCP00059,8,Ghee/oil,for frying
+RCP00060,1,Rice,½ cup
+RCP00060,2,Milk,1.5 litres
+RCP00060,3,Sugar,150 g
+RCP00060,4,Cardamom,4 piece
+RCP00060,5,Almonds,2 tbsp
+RCP00060,6,Pistachios,2 tbsp
+RCP00060,7,Khoya,100 g

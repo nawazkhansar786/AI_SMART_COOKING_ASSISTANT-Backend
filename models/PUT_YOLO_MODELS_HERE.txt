@@ -1,0 +1,1 @@
+Place best.pt and any other YOLO .pt model files in this folder.

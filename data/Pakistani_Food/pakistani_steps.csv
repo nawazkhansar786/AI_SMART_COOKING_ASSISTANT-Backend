@@ -1,0 +1,398 @@
+recipe_id,step_number,instruction
+RCP00001,1,Heat oil in a karahi and fry the chicken until lightly golden
+RCP00001,2,Add ginger and garlic and cook for 1 minute
+RCP00001,3,"Add chopped tomatoes, salt, red chilli, cumin and coriander powder"
+RCP00001,4,Cover and cook until the tomatoes become soft
+RCP00001,5,Add yogurt and cook until the oil separates
+RCP00001,6,Add green chillies and fresh coriander
+RCP00001,7,Cook for another 3–4 minutes and serve hot
+RCP00002,1,Heat oil and fry onion until golden
+RCP00002,2,Add ginger-garlic paste and chicken
+RCP00002,3,Cook until chicken changes color
+RCP00002,4,"Add tomatoes, spices and salt"
+RCP00002,5,Cook until tomatoes become soft
+RCP00002,6,Add yogurt and cook until oil separates
+RCP00002,7,Add cream and simmer for 5 minutes
+RCP00002,8,Garnish with coriander and serve
+RCP00003,1,Wash and soak rice for 30 minutes
+RCP00003,2,Fry sliced onions until golden and reserve some for garnish
+RCP00003,3,Add ginger-garlic paste and chicken
+RCP00003,4,"Add tomatoes, yogurt, potato and biryani spices"
+RCP00003,5,Cook until chicken is tender and oil separates
+RCP00003,6,Boil rice separately until about 80% cooked
+RCP00003,7,Layer rice over the chicken mixture
+RCP00003,8,"Add mint, coriander and fried onions"
+RCP00003,9,Cover and steam on low heat for 15–20 minutes
+RCP00004,1,Fry onions until golden and grind them
+RCP00004,2,Heat oil and cook ginger-garlic paste
+RCP00004,3,Add chicken and fry until golden
+RCP00004,4,Add spices and salt
+RCP00004,5,Add yogurt gradually while stirring
+RCP00004,6,Add fried onion paste and nut paste
+RCP00004,7,Add water and simmer until chicken is tender
+RCP00004,8,Finish with garam masala and serve
+RCP00005,1,Cut chicken and vegetables into strips
+RCP00005,2,Heat oil and cook chicken with ginger-garlic paste
+RCP00005,3,Add tomato and spices
+RCP00005,4,"Add onion, capsicum and carrot"
+RCP00005,5,Stir-fry on high heat
+RCP00005,6,Add soy sauce and black pepper
+RCP00005,7,Cook for 3–4 minutes while keeping vegetables slightly crunchy
+RCP00005,8,Serve hot
+RCP00006,1,Cook chicken with ginger-garlic paste until lightly browned
+RCP00006,2,Add tomato puree and spices
+RCP00006,3,Cook until the tomato sauce thickens
+RCP00006,4,Add yogurt and mix well
+RCP00006,5,Add butter and simmer
+RCP00006,6,Add cream and sugar
+RCP00006,7,Cook for another 5 minutes
+RCP00006,8,Garnish with cream and coriander
+RCP00007,1,Blanch spinach and blend into a smooth puree
+RCP00007,2,Heat oil and fry onion
+RCP00007,3,Add ginger-garlic paste and chicken
+RCP00007,4,Add tomato and spices
+RCP00007,5,Cook until chicken is tender
+RCP00007,6,Add spinach puree
+RCP00007,7,Simmer for 10 minutes
+RCP00007,8,Add green chilli and serve
+RCP00008,1,"Mix yogurt, lemon juice, ginger-garlic paste and spices"
+RCP00008,2,Marinate chicken for at least 2 hours
+RCP00008,3,Thread chicken onto skewers
+RCP00008,4,Grill or bake until completely cooked
+RCP00008,5,Brush with oil during grilling
+RCP00008,6,Serve with mint chutney and salad
+RCP00009,1,Fry onion until golden
+RCP00009,2,Add whole spices and ginger-garlic paste
+RCP00009,3,Add chicken and fry
+RCP00009,4,Add yogurt and salt
+RCP00009,5,Add water and cook chicken
+RCP00009,6,Add soaked rice
+RCP00009,7,Cook until water is absorbed
+RCP00009,8,Cover and steam for 15 minutes
+RCP00010,1,"Boil chicken with whole spices, ginger and garlic"
+RCP00010,2,Strain and reserve the yakhni
+RCP00010,3,Fry sliced onions until golden
+RCP00010,4,Add rice and fry for 2 minutes
+RCP00010,5,Add chicken and yakhni
+RCP00010,6,Cook until rice absorbs the liquid
+RCP00010,7,Cover and steam for 15 minutes
+RCP00010,8,Serve hot
+RCP00011,1,Fry onion with cumin and whole spices
+RCP00011,2,"Add carrot, potato, corn and peas"
+RCP00011,3,Cook vegetables for 5 minutes
+RCP00011,4,Add soaked rice
+RCP00011,5,Add water and salt
+RCP00011,6,Cook until water is absorbed
+RCP00011,7,Cover and steam for 15 minutes
+RCP00012,1,Fry onions until golden
+RCP00012,2,"Add chicken, ginger-garlic paste and spices"
+RCP00012,3,"Add tomatoes, yogurt and potatoes"
+RCP00012,4,Cook until chicken is tender
+RCP00012,5,Boil rice separately until 80% cooked
+RCP00012,6,Layer rice and chicken mixture
+RCP00012,7,"Add mint, coriander and green chillies"
+RCP00012,8,Steam for 20 minutes
+RCP00013,1,Wash and soak rice
+RCP00013,2,Heat butter and oil
+RCP00013,3,Add cumin seeds
+RCP00013,4,Add rice and salt
+RCP00013,5,Add water and cook until tender
+RCP00013,6,Cover and steam for 10 minutes
+RCP00014,1,Fry onion until golden
+RCP00014,2,Add tomato and spices
+RCP00014,3,Add vegetables and cook
+RCP00014,4,Add cooked rice
+RCP00014,5,Mix gently
+RCP00014,6,Cook for 5 minutes and serve
+RCP00015,1,Fry onion until golden
+RCP00015,2,Add tomato and spices
+RCP00015,3,Add vegetables and cook
+RCP00015,4,Add cooked rice
+RCP00015,5,Mix gently
+RCP00015,6,Cook for 5 minutes and serve
+RCP00016,1,Fry bhindi until lightly crisp
+RCP00016,2,Fry half the onions
+RCP00016,3,"Add ginger-garlic, tomato and spices"
+RCP00016,4,Add yogurt and cook until oil separates
+RCP00016,5,Add bhindi and remaining onion
+RCP00016,6,Cook for 5 minutes
+RCP00017,1,Wash and dry bhindi completely
+RCP00017,2,Cut into thin strips
+RCP00017,3,Mix with flour and spices
+RCP00017,4,Deep fry until crispy
+RCP00017,5,Sprinkle chaat masala and serve
+RCP00018,1,Fry potatoes lightly
+RCP00018,2,Add onion and ginger-garlic
+RCP00018,3,Add tomatoes and spices
+RCP00018,4,Add cauliflower and potatoes
+RCP00018,5,Cover and cook until tender
+RCP00018,6,Garnish with coriander
+RCP00019,1,Fry onion
+RCP00019,2,Add ginger-garlic and tomato
+RCP00019,3,Add spices
+RCP00019,4,Add vegetables
+RCP00019,5,Add a little water and cover
+RCP00019,6,Cook until vegetables are tender but not mushy
+RCP00020,1,Fry cumin in oil
+RCP00020,2,Add potatoes and cook until lightly golden
+RCP00020,3,Add onion and tomato
+RCP00020,4,Add spices
+RCP00020,5,Add capsicum
+RCP00020,6,Cook until vegetables are tender
+RCP00021,1,Fry onion and ginger-garlic
+RCP00021,2,Add tomato and spices
+RCP00021,3,Add carrots and peas
+RCP00021,4,Add a little water
+RCP00021,5,Cover and cook until tender
+RCP00021,6,Garnish with coriander
+RCP00022,1,Fry vegetables lightly
+RCP00022,2,Prepare tomato and spice gravy
+RCP00022,3,Add yogurt and cook until oil separates
+RCP00022,4,Add vegetables
+RCP00022,5,Add cream
+RCP00022,6,Simmer for 5–7 minutes
+RCP00023,1,Soak daal for 1 hour
+RCP00023,2,Boil until tender
+RCP00023,3,"Fry onion, cumin and ginger-garlic"
+RCP00023,4,Add tomato and spices
+RCP00023,5,Add cooked daal
+RCP00023,6,Simmer for 10 minutes
+RCP00023,7,Serve with tarka
+RCP00024,1,Wash and soak daal
+RCP00024,2,Boil until soft
+RCP00024,3,"Prepare onion, tomato and spice masala"
+RCP00024,4,Add daal
+RCP00024,5,Simmer for 10 minutes
+RCP00024,6,Add fried garlic and cumin tarka
+RCP00025,1,Wash and boil moong daal
+RCP00025,2,Fry onion with cumin
+RCP00025,3,Add ginger-garlic and tomato
+RCP00025,4,Add spices
+RCP00025,5,Add boiled daal
+RCP00025,6,Simmer for 10 minutes
+RCP00025,7,Add coriander and serve
+RCP00026,1,Boil daal with turmeric and salt
+RCP00026,2,Prepare onion and tomato masala
+RCP00026,3,Add boiled daal
+RCP00026,4,Simmer for 10 minutes
+RCP00026,5,Heat oil and butter
+RCP00026,6,"Fry garlic, cumin and red chilli"
+RCP00026,7,Pour tarka over daal
+RCP00027,1,Boil moong daal until soft
+RCP00027,2,Fry onion and ginger-garlic
+RCP00027,3,Add tomatoes and spices
+RCP00027,4,Add spinach and cook until wilted
+RCP00027,5,Add boiled daal
+RCP00027,6,Simmer for 10 minutes
+RCP00028,1,Soak chickpeas overnight
+RCP00028,2,Boil until tender
+RCP00028,3,Fry onion and ginger-garlic
+RCP00028,4,Add tomatoes and spices
+RCP00028,5,Add chickpeas
+RCP00028,6,Add water and simmer for 15 minutes
+RCP00029,1,Boil chickpeas and potatoes
+RCP00029,2,"Prepare onion, tomato and spice masala"
+RCP00029,3,Add chickpeas and potatoes
+RCP00029,4,Add water
+RCP00029,5,Simmer until thick
+RCP00029,6,Garnish with coriander
+RCP00030,1,Fry onions until golden
+RCP00030,2,Add whole spices and ginger-garlic
+RCP00030,3,Add boiled chickpeas
+RCP00030,4,Add soaked rice
+RCP00030,5,Add water and salt
+RCP00030,6,Cook until rice is tender
+RCP00030,7,Steam for 10 minutes
+RCP00031,1,Fry onion and ginger-garlic
+RCP00031,2,Add tomatoes and spices
+RCP00031,3,Add yogurt
+RCP00031,4,Cook until oil separates
+RCP00031,5,Add boiled chickpeas
+RCP00031,6,Add water and simmer for 15 minutes
+RCP00032,1,Boil and peel eggs
+RCP00032,2,Lightly fry eggs
+RCP00032,3,Prepare onion and tomato masala
+RCP00032,4,Add spices
+RCP00032,5,Add eggs and a little water
+RCP00032,6,Simmer for 8 minutes
+RCP00033,1,Fry onion and capsicum
+RCP00033,2,Add tomatoes and spices
+RCP00033,3,Beat eggs separately
+RCP00033,4,Pour eggs into the masala
+RCP00033,5,Stir gently until cooked
+RCP00033,6,Garnish with green chilli
+RCP00034,1,Beat eggs with salt and pepper
+RCP00034,2,"Add chopped onion, tomato, chilli and coriander"
+RCP00034,3,Heat oil
+RCP00034,4,Pour egg mixture into pan
+RCP00034,5,Cook both sides until golden
+RCP00034,6,Serve hot
+RCP00035,1,Fry onion and capsicum
+RCP00035,2,Add garlic and tomatoes
+RCP00035,3,Add spices and cook until thick
+RCP00035,4,Make small wells in the sauce
+RCP00035,5,Crack eggs into the wells
+RCP00035,6,Cover and cook until eggs are set
+RCP00036,1,Boil and cube potatoes
+RCP00036,2,Heat oil and fry cumin
+RCP00036,3,Add potatoes and spices
+RCP00036,4,Cook until golden
+RCP00036,5,Add green chilli and coriander
+RCP00037,1,Fry onion and ginger-garlic
+RCP00037,2,Add tomatoes and spices
+RCP00037,3,Cook until oil separates
+RCP00037,4,Add boiled potatoes
+RCP00037,5,Add water and simmer
+RCP00037,6,Cook until thick
+RCP00038,1,Blanch and chop spinach
+RCP00038,2,Fry onion and ginger-garlic
+RCP00038,3,Add tomato and spices
+RCP00038,4,Add potatoes
+RCP00038,5,Add spinach
+RCP00038,6,Cover and cook until potatoes are tender
+RCP00039,1,Cut potatoes into wedges
+RCP00039,2,Boil for 5 minutes and drain
+RCP00039,3,Coat with corn flour and spices
+RCP00039,4,Deep fry until crispy
+RCP00039,5,Sprinkle chaat masala before serving
+RCP00040,1,Fry onion and capsicum
+RCP00040,2,Add ginger-garlic and tomato
+RCP00040,3,Add spices
+RCP00040,4,Add corn
+RCP00040,5,Cook for 8–10 minutes
+RCP00040,6,Garnish with coriander
+RCP00041,1,Fry onion and cumin
+RCP00041,2,Add whole spices and corn
+RCP00041,3,Add soaked rice
+RCP00041,4,Add water and salt
+RCP00041,5,Cook until rice is tender
+RCP00041,6,Steam for 10 minutes
+RCP00042,1,Fry onion in butter
+RCP00042,2,Add ginger-garlic and tomato
+RCP00042,3,Add corn and spices
+RCP00042,4,Add yogurt and cook gently
+RCP00042,5,Add cream
+RCP00042,6,Simmer for 5 minutes
+RCP00043,1,Fry onion until golden
+RCP00043,2,Add ginger-garlic and chicken
+RCP00043,3,Add spices
+RCP00043,4,Add yogurt gradually
+RCP00043,5,Cook until chicken is tender
+RCP00043,6,Finish with garam masala
+RCP00044,1,Boil and cube potatoes
+RCP00044,2,Heat oil and fry cumin
+RCP00044,3,Add tomato and spices
+RCP00044,4,Add yogurt while stirring continuously
+RCP00044,5,Add potatoes
+RCP00044,6,Simmer for 8 minutes
+RCP00045,1,Whisk yogurt and gram flour with water
+RCP00045,2,Add turmeric and salt
+RCP00045,3,Cook on medium heat while stirring
+RCP00045,4,"Prepare onion, tomato and spice tarka"
+RCP00045,5,Add tarka to kadhi
+RCP00045,6,Simmer for 20 minutes
+RCP00045,7,Serve with rice
+RCP00046,1,Blanch and blend spinach
+RCP00046,2,Fry onion and ginger-garlic
+RCP00046,3,Add chicken and cook
+RCP00046,4,Add tomato and spices
+RCP00046,5,Add spinach puree
+RCP00046,6,Simmer until chicken is fully cooked
+RCP00047,1,Blanch and blend spinach
+RCP00047,2,Lightly fry paneer cubes
+RCP00047,3,Fry onion and ginger-garlic
+RCP00047,4,Add tomatoes and cook
+RCP00047,5,Add spinach puree
+RCP00047,6,Add paneer and cream
+RCP00047,7,Simmer for 5 minutes
+RCP00048,1,Boil daal until tender
+RCP00048,2,"Fry onion, garlic and tomato"
+RCP00048,3,Add spices
+RCP00048,4,Add spinach and cook
+RCP00048,5,Add boiled daal
+RCP00048,6,Simmer for 10 minutes
+RCP00049,1,Make soft dough using flour and water
+RCP00049,2,Boil and mash potatoes
+RCP00049,3,Mix potatoes with spices and coriander
+RCP00049,4,Fill dough with potato mixture
+RCP00049,5,Roll into a paratha
+RCP00049,6,Cook on hot tawa with oil or ghee
+RCP00049,7,Cook both sides until golden
+RCP00050,1,Prepare soft dough using flour
+RCP00050,2,Shred cooked chicken
+RCP00050,3,"Mix chicken with onion, chilli and spices"
+RCP00050,4,Fill dough with chicken mixture
+RCP00050,5,Roll into a paratha
+RCP00050,6,Cook on tawa with oil until golden
+RCP00051,1,Fry onion and ginger-garlic
+RCP00051,2,Add tomatoes and spices
+RCP00051,3,Add carrots and peas
+RCP00051,4,Add a little water
+RCP00051,5,Cover and cook until tender
+RCP00051,6,Garnish with coriander
+RCP00052,1,Heat oil and fry cumin
+RCP00052,2,Add onion and cook until soft
+RCP00052,3,Add tomato and spices
+RCP00052,4,Add sliced carrots
+RCP00052,5,Cover and cook until tender
+RCP00052,6,Garnish with coriander
+RCP00053,1,Boil chicken and shred it
+RCP00053,2,Heat chicken stock
+RCP00053,3,Add chicken and corn
+RCP00053,4,"Add soy sauce, vinegar and pepper"
+RCP00053,5,Mix corn flour with water and add gradually
+RCP00053,6,Beat egg and slowly pour into the soup while stirring
+RCP00053,7,Cook for 2–3 minutes and serve hot
+RCP00054,1,Heat chicken stock
+RCP00054,2,Add shredded chicken and vegetables
+RCP00054,3,"Add soy sauce, vinegar and chilli sauce"
+RCP00054,4,Add black pepper and salt
+RCP00054,5,Add corn flour slurry
+RCP00054,6,Simmer until slightly thick
+RCP00054,7,Serve hot
+RCP00055,1,"Put chicken, water, onion, ginger and garlic in a pot"
+RCP00055,2,Add black pepper and salt
+RCP00055,3,Simmer for 45–60 minutes
+RCP00055,4,Remove chicken and shred it
+RCP00055,5,Strain the broth
+RCP00055,6,Return chicken to the broth
+RCP00055,7,Add carrot and cook until tender
+RCP00055,8,Garnish with coriander
+RCP00056,1,Wash the daal
+RCP00056,2,"Add daal, vegetables, garlic and water to a pot"
+RCP00056,3,Cook until daal becomes soft
+RCP00056,4,Blend partially for a smooth texture
+RCP00056,5,Add black pepper and salt
+RCP00056,6,Simmer for another 5 minutes
+RCP00056,7,Serve hot
+RCP00057,1,Melt butter and fry onion
+RCP00057,2,Add vegetables
+RCP00057,3,Add vegetable stock
+RCP00057,4,Cook until vegetables are tender
+RCP00057,5,Blend until smooth
+RCP00057,6,Add milk and cream
+RCP00057,7,Add black pepper and salt
+RCP00057,8,Simmer for 5 minutes
+RCP00058,1,Grate the carrots
+RCP00058,2,Cook carrots with milk until milk is mostly absorbed
+RCP00058,3,Add sugar and cook
+RCP00058,4,Add ghee and cardamom
+RCP00058,5,Cook until the mixture becomes thick
+RCP00058,6,Add khoya
+RCP00058,7,Garnish with almonds and pistachios
+RCP00059,1,Remove bread edges and cut into triangles
+RCP00059,2,Fry bread until golden
+RCP00059,3,Boil milk until reduced
+RCP00059,4,"Add sugar, cream and cardamom"
+RCP00059,5,Place fried bread in serving dish
+RCP00059,6,Pour reduced milk over bread
+RCP00059,7,Garnish with almonds and pistachios
+RCP00059,8,Chill before serving
+RCP00060,1,Wash and soak rice for 30 minutes
+RCP00060,2,Add rice to milk
+RCP00060,3,Cook on low heat until rice becomes completely soft.
+RCP00060,4,Add sugar and cardamom
+RCP00060,5,Add khoya and mix well
+RCP00060,6,Cook until the kheer becomes creamy and thick
+RCP00060,7,Garnish with almonds and pistachios
+RCP00060,8,Serve warm or chilled
