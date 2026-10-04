@@ -4,3 +4,6 @@ __pycache__/
 uploads/*
 predictions/*
 instance/*.db
+# Local YOLO/ONNX files
+models/*.onnx
+models/runs/

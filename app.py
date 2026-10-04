@@ -1,4 +1,4 @@
-from flask import (
+﻿from flask import (
     Flask,
     render_template,
     request,
@@ -21,6 +21,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from ultralytics import YOLO
 from werkzeug.utils import secure_filename
+from huggingface_hub import hf_hub_download
 # ==========================================
 # SAFE CSV READER - AUTO ENCODING
 # ==========================================
@@ -95,8 +96,20 @@ from ultralytics import YOLO
 
 from werkzeug.utils import secure_filename
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"], supports_credentials=True)
-
+CORS(
+    app,
+    resources={
+        r"/*": {
+            "origins": [
+                "http://localhost:5173",
+                "http://127.0.0.1:5173",
+                "https://localhost",
+                "capacitor://localhost",
+            ]
+        }
+    },
+    supports_credentials=True
+)
 # ==========================================
 # APP CONFIGURATION
 # ==========================================
@@ -129,11 +142,23 @@ app.config["PREDICTION_FOLDER"] = PREDICTION_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 os.makedirs(PREDICTION_FOLDER, exist_ok=True)
-# Single ingredient model
-single_model = YOLO("models/best_single.pt")
+# Hugging Face model repository
+HF_REPO_ID = "nawazkhanai/ai-based-cooking"
 
-# Multiple ingredient model
-multiple_model = YOLO("models/best_multiple.pt")
+# Download models from Hugging Face
+single_model_path = hf_hub_download(
+    repo_id=HF_REPO_ID,
+    filename="best_single.pt"
+)
+
+multiple_model_path = hf_hub_download(
+    repo_id=HF_REPO_ID,
+    filename="best_multiple.pt"
+)
+
+# Load YOLO models
+single_model = YOLO(single_model_path)
+multiple_model = YOLO(multiple_model_path)
 def automatic_detection(image_path):
 
     # First check with multiple model
@@ -156,13 +181,13 @@ def automatic_detection(image_path):
     # 2 or more different ingredients
     if len(detected_classes) >= 2:
 
-        print("🍲 Multiple ingredients detected")
+        print("ðŸ² Multiple ingredients detected")
         print("Using MULTIPLE model")
 
         return multiple_results, "multiple"
 
     # 0 or 1 ingredient
-    print("🥕 Single ingredient detected")
+    print("ðŸ¥• Single ingredient detected")
     print("Using SINGLE model")
 
     single_results = single_model(
@@ -192,20 +217,12 @@ def load_dataset(language):
             "data/Pakistani_Food_urdu/pakistani_recipes_urdu.csv",
 
             # Urdu Column Names
-            "recipe_col":
-            "رسیپی_آئی_ڈی",
-
-            "ingredient_col":
-            "جزو_کا_نام",
-
-            "quantity_col":
-            "مقدار",
-
-            "step_no":
-            "قدم_نمبر",
-
-            "step_col":
-            "ہدایت"
+            # Urdu Column Names
+           "recipe_col": "رسیپی_آئی_ڈی",
+            "ingredient_col": "جزو_کا_نام",
+            "quantity_col": "مقدار",
+            "step_no": "قدم_نمبر",
+            "step_col": "ہدایت"
 
         }
 
@@ -298,10 +315,10 @@ def scale_quantity(text, persons, base=2):
     text = re.sub(pattern, replace, text)
 
     # ==========================
-    # Gram → Kilogram
+    # Gram â†’ Kilogram
     # ==========================
 
-    kg_pattern = r'(\d+(\.\d+)?)\s*(g|gram|grams|گرام)'
+    kg_pattern = r'(\d+(\.\d+)?)\s*(g|gram|grams|Ú¯Ø±Ø§Ù…)'
 
     def convert_kg(match):
 
@@ -316,8 +333,8 @@ def scale_quantity(text, persons, base=2):
             if kg.is_integer():
                 kg = int(kg)
 
-            if unit == "گرام":
-                return f"{kg} کلوگرام"
+            if unit == "Ú¯Ø±Ø§Ù…":
+                return f"{kg} Ú©Ù„ÙˆÚ¯Ø±Ø§Ù…"
 
             return f"{kg} kg"
 
@@ -380,15 +397,15 @@ def modify_health(
 
         "urdu":{
 
-            "healthy":"اصل نسخہ آپ کے لیے مناسب ہے۔",
+            "healthy":"Ø§ØµÙ„ Ù†Ø³Ø®Û Ø¢Ù¾ Ú©Û’ Ù„ÛŒÛ’ Ù…Ù†Ø§Ø³Ø¨ ÛÛ’Û”",
 
-            "diabetes":"ذیابیطس کے لیے نسخے میں تبدیلی کی گئی ہے۔",
+            "diabetes":"Ø°ÛŒØ§Ø¨ÛŒØ·Ø³ Ú©Û’ Ù„ÛŒÛ’ Ù†Ø³Ø®Û’ Ù…ÛŒÚº ØªØ¨Ø¯ÛŒÙ„ÛŒ Ú©ÛŒ Ú¯Ø¦ÛŒ ÛÛ’Û”",
 
-            "blood_pressure":"بلند فشار خون کے لیے نسخے میں تبدیلی کی گئی ہے۔",
+            "blood_pressure":"Ø¨Ù„Ù†Ø¯ ÙØ´Ø§Ø± Ø®ÙˆÙ† Ú©Û’ Ù„ÛŒÛ’ Ù†Ø³Ø®Û’ Ù…ÛŒÚº ØªØ¨Ø¯ÛŒÙ„ÛŒ Ú©ÛŒ Ú¯Ø¦ÛŒ ÛÛ’Û”",
 
-            "weight_loss":"وزن کم کرنے کے لیے نسخے میں تبدیلی کی گئی ہے۔",
+            "weight_loss":"ÙˆØ²Ù† Ú©Ù… Ú©Ø±Ù†Û’ Ú©Û’ Ù„ÛŒÛ’ Ù†Ø³Ø®Û’ Ù…ÛŒÚº ØªØ¨Ø¯ÛŒÙ„ÛŒ Ú©ÛŒ Ú¯Ø¦ÛŒ ÛÛ’Û”",
 
-            "weight_gain":"وزن بڑھانے کے لیے نسخے میں تبدیلی کی گئی ہے۔"
+            "weight_gain":"ÙˆØ²Ù† Ø¨Ú‘Ú¾Ø§Ù†Û’ Ú©Û’ Ù„ÛŒÛ’ Ù†Ø³Ø®Û’ Ù…ÛŒÚº ØªØ¨Ø¯ÛŒÙ„ÛŒ Ú©ÛŒ Ú¯Ø¦ÛŒ ÛÛ’Û”"
 
         }
 
@@ -406,7 +423,7 @@ def modify_health(
 
             name = str(row[ingredient_col]).lower()
 
-            if "sugar" in name or "چینی" in name:
+            if "sugar" in name or "Ú†ÛŒÙ†ÛŒ" in name:
 
                 ingredients.at[index,ingredient_col] = (
 
@@ -416,7 +433,7 @@ def modify_health(
 
                     else
 
-                    "اسٹیویا"
+                    "Ø§Ø³Ù¹ÛŒÙˆÛŒØ§"
 
                 )
 
@@ -428,7 +445,7 @@ def modify_health(
 
                     else
 
-                    "حسبِ ضرورت"
+                    "Ø­Ø³Ø¨Ù Ø¶Ø±ÙˆØ±Øª"
 
                 )
 
@@ -456,7 +473,7 @@ def modify_health(
 
             name=str(row[ingredient_col]).lower()
 
-            if "salt" in name or "نمک" in name:
+            if "salt" in name or "Ù†Ù…Ú©" in name:
 
                 ingredients.at[index,quantity_col]=(
 
@@ -466,11 +483,11 @@ def modify_health(
 
                     else
 
-                    "آدھا چائے کا چمچ"
+                    "Ø¢Ø¯Ú¾Ø§ Ú†Ø§Ø¦Û’ Ú©Ø§ Ú†Ù…Ú†"
 
                 )
 
-            elif "oil" in name or "تیل" in name:
+            elif "oil" in name or "ØªÛŒÙ„" in name:
 
                 ingredients.at[index,quantity_col]=(
 
@@ -480,11 +497,11 @@ def modify_health(
 
                     else
 
-                    "2 کھانے کے چمچ"
+                    "2 Ú©Ú¾Ø§Ù†Û’ Ú©Û’ Ú†Ù…Ú†"
 
                 )
 
-            elif "ghee" in name or "گھی" in name:
+            elif "ghee" in name or "Ú¯Ú¾ÛŒ" in name:
 
                 ingredients.at[index,quantity_col]=(
 
@@ -494,7 +511,7 @@ def modify_health(
 
                     else
 
-                    "1 کھانے کا چمچ"
+                    "1 Ú©Ú¾Ø§Ù†Û’ Ú©Ø§ Ú†Ù…Ú†"
 
                 )
 
@@ -533,7 +550,7 @@ def modify_health(
 
             name = str(row[ingredient_col]).lower()
 
-            if "oil" in name or "تیل" in name:
+            if "oil" in name or "ØªÛŒÙ„" in name:
 
                 ingredients.at[index, quantity_col] = (
 
@@ -543,7 +560,7 @@ def modify_health(
 
                     else
 
-                    "2 کھانے کے چمچ"
+                    "2 Ú©Ú¾Ø§Ù†Û’ Ú©Û’ Ú†Ù…Ú†"
 
                 )
 
@@ -581,7 +598,7 @@ def modify_health(
 
             else
 
-            "ابلا ہوا انڈا",
+            "Ø§Ø¨Ù„Ø§ ÛÙˆØ§ Ø§Ù†ÚˆØ§",
 
             quantity_col:
 
@@ -591,7 +608,7 @@ def modify_health(
 
             else
 
-            "2 عدد"
+            "2 Ø¹Ø¯Ø¯"
 
         }
 
@@ -627,7 +644,7 @@ def modify_health(
 
             else
 
-            "اضافی پروٹین کے لیے 2 ابلے ہوئے انڈوں کے ساتھ پیش کریں۔"
+            "Ø§Ø¶Ø§ÙÛŒ Ù¾Ø±ÙˆÙ¹ÛŒÙ† Ú©Û’ Ù„ÛŒÛ’ 2 Ø§Ø¨Ù„Û’ ÛÙˆØ¦Û’ Ø§Ù†ÚˆÙˆÚº Ú©Û’ Ø³Ø§ØªÚ¾ Ù¾ÛŒØ´ Ú©Ø±ÛŒÚºÛ”"
 
         }
 
@@ -671,17 +688,17 @@ def modify_health(
 
             else:
 
-                nutrition["پروٹین_گرام"] = (
+                nutrition["Ù¾Ø±ÙˆÙ¹ÛŒÙ†_Ú¯Ø±Ø§Ù…"] = (
 
-                    nutrition.get("پروٹین_گرام",0)
+                    nutrition.get("Ù¾Ø±ÙˆÙ¹ÛŒÙ†_Ú¯Ø±Ø§Ù…",0)
 
                     +12
 
                 )
 
-                nutrition["کیلوریز"] = (
+                nutrition["Ú©ÛŒÙ„ÙˆØ±ÛŒØ²"] = (
 
-                    nutrition.get("کیلوریز",0)
+                    nutrition.get("Ú©ÛŒÙ„ÙˆØ±ÛŒØ²",0)
 
                     +160
 
@@ -731,28 +748,28 @@ def scale_nutrition(nutrition_df, persons, language, base=2):
         nutrition = {
 
             "calories":
-                nutrition.get("کیلوریز",0),
+                nutrition.get("Ú©ÛŒÙ„ÙˆØ±ÛŒØ²",0),
 
             "protein_g":
-                nutrition.get("پروٹین_گرام",0),
+                nutrition.get("Ù¾Ø±ÙˆÙ¹ÛŒÙ†_Ú¯Ø±Ø§Ù…",0),
 
             "carbohydrates_g":
-                nutrition.get("کاربوہائیڈریٹس_گرام",0),
+                nutrition.get("Ú©Ø§Ø±Ø¨ÙˆÛØ§Ø¦ÛŒÚˆØ±ÛŒÙ¹Ø³_Ú¯Ø±Ø§Ù…",0),
 
             "fat_g":
-                nutrition.get("چکنائی_گرام",0),
+                nutrition.get("Ú†Ú©Ù†Ø§Ø¦ÛŒ_Ú¯Ø±Ø§Ù…",0),
 
             "fiber_g":
-                nutrition.get("فائبر_گرام",0),
+                nutrition.get("ÙØ§Ø¦Ø¨Ø±_Ú¯Ø±Ø§Ù…",0),
 
             "sugar_g":
-                nutrition.get("شوگر_گرام",0),
+                nutrition.get("Ø´ÙˆÚ¯Ø±_Ú¯Ø±Ø§Ù…",0),
 
             "sodium_mg":
-                nutrition.get("سوڈیم_ملی_گرام",0),
+                nutrition.get("Ø³ÙˆÚˆÛŒÙ…_Ù…Ù„ÛŒ_Ú¯Ø±Ø§Ù…",0),
 
             "cholesterol_mg":
-                nutrition.get("کولیسٹرول_ملی_گرام",0)
+                nutrition.get("Ú©ÙˆÙ„ÛŒØ³Ù¹Ø±ÙˆÙ„_Ù…Ù„ÛŒ_Ú¯Ø±Ø§Ù…",0)
 
         }
 
@@ -2244,7 +2261,7 @@ with app.app_context():
                 )
             )
 
-            print("✅ reset_token added")
+            print("âœ… reset_token added")
 
         if "reset_token_expiry" not in columns:
 
@@ -2255,9 +2272,9 @@ with app.app_context():
                 )
             )
 
-            print("✅ reset_token_expiry added")
+            print("âœ… reset_token_expiry added")
 
-    print("✅ Database ready")
+    print("âœ… Database ready")
 # ==========================================
 # STRONG PASSWORD VALIDATION
 # ==========================================
@@ -2490,7 +2507,7 @@ def detect():
         model_type = "multiple"
 
         print("--------------------------------------")
-        print("🍲 MULTIPLE INGREDIENT IMAGE")
+        print("ðŸ² MULTIPLE INGREDIENT IMAGE")
         print("Using MULTIPLE model")
         print("--------------------------------------")
 
@@ -2518,7 +2535,7 @@ def detect():
         model_type = "single"
 
         print("--------------------------------------")
-        print("🥕 SINGLE INGREDIENT IMAGE")
+        print("ðŸ¥• SINGLE INGREDIENT IMAGE")
         print("Using SINGLE model")
         print("--------------------------------------")
 
@@ -2731,7 +2748,7 @@ def detect():
         )
 
         # --------------------------------------
-        # Recommended ingredients → list
+        # Recommended ingredients â†’ list
         # --------------------------------------
 
         if isinstance(
@@ -2751,7 +2768,7 @@ def detect():
             ]
 
         # --------------------------------------
-        # Combination → string
+        # Combination â†’ string
         # --------------------------------------
 
         if isinstance(
@@ -3381,7 +3398,7 @@ def find_recipe():
     selected = [
 
         str(i)
-        .replace("✕", "")
+        .replace("âœ•", "")
         .strip()
         .lower()
 
@@ -3647,7 +3664,7 @@ def search_recipe():
 
         ingredient_text += (
 
-            "• "
+            "â€¢ "
             + str(row["ingredient_name"])
             + " - "
             + str(row["quantity"])
@@ -4044,3 +4061,4 @@ def api_pakistani_recipe(food):
 # -------------------------------
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)
+
