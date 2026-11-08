@@ -148,16 +148,21 @@ from ultralytics import YOLO
 
 from werkzeug.utils import secure_filename
 app = Flask(__name__)
+
+cors_origins = [
+    origin.strip()
+    for origin in os.environ.get(
+        "CORS_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173,https://localhost,capacitor://localhost",
+    ).split(",")
+    if origin.strip()
+]
+
 CORS(
     app,
     resources={
         r"/*": {
-            "origins": [
-                "http://localhost:5173",
-                "http://127.0.0.1:5173",
-                "https://localhost",
-                "capacitor://localhost",
-            ]
+            "origins": cors_origins
         }
     },
     supports_credentials=True
@@ -4548,4 +4553,3 @@ def api_pakistani_recipe(food):
 # -------------------------------
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)
-
