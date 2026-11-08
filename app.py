@@ -11,6 +11,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 import pandas as pd
+import json
+import urllib.request
+import urllib.error
 import re
 import os
 import shutil
@@ -22,6 +25,55 @@ from email.mime.multipart import MIMEMultipart
 from ultralytics import YOLO
 from werkzeug.utils import secure_filename
 from huggingface_hub import hf_hub_download
+
+
+
+# =====================================================
+# LOAD BACKEND ROOT .env FILE
+# =====================================================
+# The .env file must be beside this app.py file. Existing real
+# environment variables (e.g. Replit Secrets) take priority.
+def load_backend_env():
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+
+    if not os.path.isfile(env_path):
+        print("Backend .env file not found; using system environment variables.")
+        return
+
+    try:
+        with open(env_path, "r", encoding="utf-8-sig") as env_file:
+            for raw_line in env_file:
+                line = raw_line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                if line.lower().startswith("export "):
+                    line = line[7:].strip()
+                if "=" not in line:
+                    continue
+
+                key, value = line.split("=", 1)
+                key = key.strip()
+                value = value.strip()
+                if not key:
+                    continue
+
+                # Remove matching single/double quotes and inline comments
+                # only when the value is not quoted.
+                if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+                    value = value[1:-1]
+                else:
+                    value = value.split(" #", 1)[0].strip()
+
+                if not os.environ.get(key):
+                    os.environ[key] = value
+
+        print("Backend .env file loaded:", env_path)
+    except Exception as env_error:
+        print("Could not load backend .env file:", str(env_error))
+
+
+load_backend_env()
+
 # ==========================================
 # SAFE CSV READER - AUTO ENCODING
 # ==========================================
@@ -779,10 +831,124 @@ def scale_nutrition(nutrition_df, persons, language, base=2):
 # Health Recommendation
 # ==========================================
 
+
+def apply_health_to_gemini_recipe(recipe, persons, health, language="english"):
+    """Scale a complete Gemini recipe and apply the existing health rules."""
+    persons = max(1, min(10, int(persons or 2)))
+    allowed = {"healthy", "diabetes", "blood_pressure", "weight_loss", "weight_gain"}
+    if health not in allowed:
+        raise ValueError("Unsupported health condition")
+
+    raw_ingredients = recipe.get("ingredients")
+    raw_steps = recipe.get("steps")
+    if not isinstance(raw_ingredients, list) or not raw_ingredients:
+        raise ValueError("Gemini recipe does not contain ingredient details")
+    if not isinstance(raw_steps, list) or not raw_steps:
+        raise ValueError("Gemini recipe does not contain cooking instructions")
+
+    # The frontend sends ingredient quantities already scaled for the selected
+    # number of persons. Its persons field therefore prevents scaling them twice.
+    base_persons = max(1, min(10, int(recipe.get("persons", 2) or 2)))
+    ingredients = []
+    for item in raw_ingredients:
+        if isinstance(item, str):
+            name, quantity = item.strip(), "As required"
+        elif isinstance(item, dict):
+            name = item.get("ingredient_name") or item.get("name") or item.get("ingredient") or ""
+            quantity = item.get("quantity") or item.get("amount") or "As required"
+        else:
+            continue
+        name = str(name).strip()
+        if name:
+            ingredients.append({
+                "ingredient_name": name,
+                "quantity": scale_quantity(str(quantity), persons, base=base_persons)
+            })
+
+    steps = []
+    for index, item in enumerate(raw_steps, start=1):
+        if isinstance(item, str):
+            instruction, number = item.strip(), index
+        elif isinstance(item, dict):
+            instruction = item.get("instruction") or item.get("step") or item.get("description") or ""
+            number = item.get("step_number", index)
+        else:
+            continue
+        instruction = str(instruction).strip()
+        if instruction:
+            # Gemini instructions are returned for two persons and are not
+            # quantity-scaled in the frontend, so scale them exactly once here.
+            steps.append({"step_number": number, "instruction": scale_instruction(instruction, persons)})
+
+    if not ingredients or not steps:
+        raise ValueError("Gemini recipe details are incomplete")
+
+    nutrition = recipe.get("nutrition") if isinstance(recipe.get("nutrition"), dict) else {}
+    nutrition = dict(nutrition)
+    nutrition_base = max(1, min(10, int(recipe.get("nutrition_persons", 2) or 2)))
+    nutrition_scale = persons / nutrition_base
+    for key, value in list(nutrition.items()):
+        try:
+            nutrition[key] = round(float(value) * nutrition_scale, 2)
+        except (TypeError, ValueError):
+            pass
+
+    config = {
+        "recipe_col": "recipe_id",
+        "ingredient_col": "ingredient_name",
+        "quantity_col": "quantity",
+        "step_no": "step_number",
+        "step_col": "instruction"
+    }
+    ingredients_df = pd.DataFrame(ingredients)
+    ingredients_df["recipe_id"] = "gemini"
+    steps_df = pd.DataFrame(steps)
+    steps_df["recipe_id"] = "gemini"
+
+    # The existing health rules use English ingredient names for Gemini output.
+    ingredients_df, steps_df, nutrition, message = modify_health(
+        ingredients_df, steps_df, nutrition, config, health, "english"
+    )
+
+    if health == "weight_loss":
+        for row_index, row in ingredients_df.iterrows():
+            if "cream" in str(row.get("ingredient_name", "")).lower():
+                ingredients_df.at[row_index, "ingredient_name"] = "Low Fat Yogurt"
+
+    return {
+        "recipe_name": recipe.get("recipe_name") or recipe.get("name") or "Recommended Recipe",
+        "persons": persons,
+        "ingredients": ingredients_df[["ingredient_name", "quantity"]].to_dict("records"),
+        "steps": steps_df[["step_number", "instruction"]].to_dict("records"),
+        "nutrition": nutrition,
+        "message": message,
+        "source": "gemini"
+    }
+
+
 @app.route("/health_recommendation", methods=["POST"])
 def health_recommendation():
 
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
+
+    # Gemini recommendations are not stored in the CSV dataset and therefore
+    # do not have a recipe_id. When the frontend sends the full recipe object,
+    # apply the same project health rules directly to that recipe.
+    gemini_recipe = data.get("recipe")
+    if isinstance(gemini_recipe, dict):
+        try:
+            return jsonify(apply_health_to_gemini_recipe(
+                gemini_recipe,
+                int(data.get("persons", 2)),
+                str(data.get("health", "healthy")),
+                str(data.get("language", "english"))
+            ))
+        except Exception as exc:
+            print("Gemini recipe health adjustment failed:", str(exc))
+            return jsonify({"error": "Unable to adjust this Gemini recipe", "details": str(exc)}), 400
+
+    if not data.get("recipe_id"):
+        return jsonify({"error": "recipe_id or recipe is required"}), 400
 
     recipe_id = str(data["recipe_id"]).strip()
 
@@ -1101,7 +1267,7 @@ def format_quantity(quantity):
 # Common Recipe Recommendation Function
 # ==========================================
 
-def get_recipe_recommendations(selected):
+def get_recipe_recommendations_csv(selected):
 
     print("\n========== RECIPE RECOMMENDATION ==========")
     print("SELECTED:", selected)
@@ -2184,6 +2350,318 @@ def get_recipe_recommendations(selected):
     )
 
     return unique_results
+
+
+# =====================================================
+# GEMINI ONLINE RECIPE RECOMMENDATION
+# =====================================================
+# The API key must be configured as an environment variable / Replit Secret.
+# No additional Python package is required; urllib is part of Python.
+
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.1-flash-lite").strip()
+GEMINI_TIMEOUT_SECONDS = int(os.environ.get("GEMINI_TIMEOUT_SECONDS", "60"))
+
+
+def get_recipe_recommendations_gemini(selected):
+    """Generate up to three recipe suggestions with Gemini.
+
+    Raises an exception on missing credentials, network/API errors, or an
+    invalid response. The caller then uses the existing CSV recommender.
+    """
+
+    if not GEMINI_API_KEY:
+        raise RuntimeError("GEMINI_API_KEY is not configured")
+
+    clean_ingredients = list(dict.fromkeys(
+        str(item).strip().lower()
+        for item in selected
+        if str(item).strip()
+    ))
+
+    if not clean_ingredients:
+        raise ValueError("No ingredients were supplied to Gemini")
+
+    prompt = f"""You are an expert Pakistani home-cooking assistant.
+Recommend exactly 3 realistic Pakistani or regional recipes using the user's
+available ingredients. Prefer recipes that use as many available ingredients
+as possible. Never claim a missing ingredient is available. List additional
+ingredients separately. For EACH recipe, also provide a usable complete recipe
+so the application can display ingredients, quantities and cooking steps.
+Use quantities for exactly 2 persons. Do not invent precise nutrition values;
+return nutrition as an empty object when reliable values are unavailable.
+
+Available ingredients: {json.dumps(clean_ingredients, ensure_ascii=False)}
+
+Return ONLY valid JSON in this exact structure:
+{{
+  "recipes": [
+    {{
+      "recipe_name": "Recipe name",
+      "score": 85,
+      "matched_ingredients": 3,
+      "total_ingredients": 5,
+      "percentage": 60,
+      "final_score": 85,
+      "matched": ["onion", "tomato"],
+      "required": ["onion", "tomato", "rice"],
+      "missing": ["rice"],
+      "recommended_ingredients": ["rice"],
+      "combination": "Pakistani cuisine",
+      "primary_ingredient": "rice",
+      "primary_available": false,
+      "ingredients": [
+        {{"ingredient_name": "Rice", "quantity": "1 cup"}},
+        {{"ingredient_name": "Onion", "quantity": "1 medium"}}
+      ],
+      "steps": [
+        {{"step_number": 1, "instruction": "Wash and prepare the ingredients."}},
+        {{"step_number": 2, "instruction": "Cook until done and serve."}}
+      ],
+      "nutrition": {{}}
+    }}
+  ]
+}}
+
+Rules for fields:
+- score and final_score: estimated match score from 0 to 100.
+- matched_ingredients and total_ingredients: numeric counts.
+- percentage: matched ingredient percentage from 0 to 100.
+- matched, required, missing, recommended_ingredients: arrays of ingredient names.
+- ingredients must be an array of objects with ingredient_name and quantity.
+- steps must be an array of objects with step_number and instruction.
+- primary_available: true only if the primary ingredient is in the available list.
+"""
+
+    request_body = {
+        "contents": [
+            {
+                "role": "user",
+                "parts": [{"text": prompt}]
+            }
+        ],
+        "generationConfig": {
+            "temperature": 0.35,
+            "responseMimeType": "application/json",
+            "maxOutputTokens": 4096
+        }
+    }
+
+    endpoint = (
+        "https://generativelanguage.googleapis.com/v1beta/models/"
+        f"{GEMINI_MODEL}:generateContent"
+    )
+
+    req = urllib.request.Request(
+        endpoint,
+        data=json.dumps(request_body).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+            "x-goog-api-key": GEMINI_API_KEY
+        },
+        method="POST"
+    )
+
+    try:
+        with urllib.request.urlopen(
+            req,
+            timeout=GEMINI_TIMEOUT_SECONDS
+        ) as response:
+            api_result = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as api_error:
+        # Include Google's response message so invalid keys, unavailable
+        # models, quota limits, and permission errors are visible in Replit logs.
+        try:
+            error_body = api_error.read().decode("utf-8", errors="replace")
+            error_json = json.loads(error_body) if error_body else {}
+            google_message = (
+                error_json.get("error", {}).get("message")
+                if isinstance(error_json, dict) else None
+            )
+        except Exception:
+            google_message = None
+        safe_message = google_message or api_error.reason or "Unknown API error"
+        raise RuntimeError(
+            f"Gemini API HTTP {api_error.code}: {safe_message}"
+        ) from None
+    except urllib.error.URLError as api_error:
+        raise RuntimeError(
+            f"Gemini network connection failed: {api_error.reason}"
+        ) from None
+    except TimeoutError:
+        raise RuntimeError("Gemini API request timed out") from None
+
+    candidates = api_result.get("candidates", [])
+    if not candidates:
+        raise RuntimeError("Gemini returned no candidates")
+
+    parts = candidates[0].get("content", {}).get("parts", [])
+    response_text = "".join(
+        part.get("text", "") for part in parts
+        if isinstance(part, dict)
+    ).strip()
+
+    if not response_text:
+        raise RuntimeError("Gemini returned an empty response")
+
+    # Be tolerant if the model wraps JSON in Markdown fences.
+    if response_text.startswith("```"):
+        response_text = re.sub(r"^```(?:json)?\s*", "", response_text)
+        response_text = re.sub(r"\s*```$", "", response_text)
+
+    parsed = json.loads(response_text)
+    recipes = parsed.get("recipes", []) if isinstance(parsed, dict) else []
+
+    if not isinstance(recipes, list) or not recipes:
+        raise RuntimeError("Gemini response did not contain a recipe list")
+
+    cleaned_recipes = []
+    for recipe in recipes[:3]:
+        if not isinstance(recipe, dict) or not recipe.get("recipe_name"):
+            continue
+
+        # Keep the same field names expected by the existing /detect and
+        # /find_recipe routes and their React frontend.
+        matched = recipe.get("matched", [])
+        required = recipe.get("required", [])
+        missing = recipe.get("missing", [])
+        recommended = recipe.get("recommended_ingredients", [])
+
+        if not isinstance(matched, list):
+            matched = []
+        if not isinstance(required, list):
+            required = []
+        if not isinstance(missing, list):
+            missing = []
+        if not isinstance(recommended, list):
+            recommended = []
+
+        try:
+            score = float(recipe.get("score", recipe.get("final_score", 0)))
+        except (TypeError, ValueError):
+            score = 0
+
+        try:
+            matched_count = int(recipe.get("matched_ingredients", len(matched)))
+        except (TypeError, ValueError):
+            matched_count = len(matched)
+
+        try:
+            total_count = int(recipe.get("total_ingredients", len(required)))
+        except (TypeError, ValueError):
+            total_count = len(required)
+
+        percentage = recipe.get("percentage")
+        try:
+            percentage = float(percentage)
+        except (TypeError, ValueError):
+            percentage = (matched_count / total_count * 100) if total_count else 0
+
+        raw_ingredients = recipe.get("ingredients", [])
+        raw_steps = recipe.get("steps", [])
+        if not isinstance(raw_ingredients, list) or not raw_ingredients:
+            print("Skipping incomplete Gemini recipe (missing ingredients):", recipe.get("recipe_name"))
+            continue
+        if not isinstance(raw_steps, list) or not raw_steps:
+            print("Skipping incomplete Gemini recipe (missing steps):", recipe.get("recipe_name"))
+            continue
+
+        valid_ingredients = []
+        for item in raw_ingredients:
+            if isinstance(item, str) and item.strip():
+                valid_ingredients.append({"ingredient_name": item.strip(), "quantity": "As required"})
+            elif isinstance(item, dict):
+                ingredient_name = item.get("ingredient_name") or item.get("name") or item.get("ingredient")
+                if ingredient_name and str(ingredient_name).strip():
+                    valid_ingredients.append({
+                        "ingredient_name": str(ingredient_name).strip(),
+                        "quantity": str(item.get("quantity") or item.get("amount") or "As required")
+                    })
+
+        valid_steps = []
+        for step_index, item in enumerate(raw_steps, start=1):
+            if isinstance(item, str) and item.strip():
+                valid_steps.append({"step_number": step_index, "instruction": item.strip()})
+            elif isinstance(item, dict):
+                instruction = item.get("instruction") or item.get("step") or item.get("description")
+                if instruction and str(instruction).strip():
+                    valid_steps.append({
+                        "step_number": item.get("step_number", step_index),
+                        "instruction": str(instruction).strip()
+                    })
+
+        if not valid_ingredients or not valid_steps:
+            print("Skipping incomplete Gemini recipe:", recipe.get("recipe_name"))
+            continue
+
+        cleaned_recipes.append({
+            "recipe_name": str(recipe.get("recipe_name", "Unknown Recipe")),
+            "score": round(max(0, min(100, score)), 2),
+            "matched_ingredients": matched_count,
+            "total_ingredients": total_count,
+            "percentage": round(max(0, min(100, percentage)), 2),
+            "final_score": round(max(0, min(100, score)), 2),
+            "matched": matched,
+            "required": required,
+            "missing": missing,
+            "recommended_ingredients": recommended,
+            "combination": recipe.get("combination", "Pakistani cuisine"),
+            "primary_ingredient": recipe.get("primary_ingredient", ""),
+            "primary_available": bool(recipe.get("primary_available", False)),
+            "ingredients": valid_ingredients,
+            "steps": valid_steps,
+            "nutrition": recipe.get("nutrition", {}) if isinstance(recipe.get("nutrition", {}), dict) else {},
+            "persons": 2,
+            "nutrition_persons": 2,
+            "source": "gemini"
+        })
+
+    if not cleaned_recipes:
+        raise RuntimeError("Gemini did not return any complete recipes with ingredients and cooking steps")
+
+    print("ONLINE MODE: Gemini generated", len(cleaned_recipes), "recipes")
+    return cleaned_recipes
+
+
+# =====================================================
+# HYBRID RECIPE RECOMMENDATION
+# ONLINE: GEMINI | OFFLINE/API FAILURE: EXISTING CSV
+# =====================================================
+
+def get_recipe_recommendations(selected):
+    print("\n========== HYBRID RECIPE RECOMMENDATION ==========")
+
+    try:
+        print("Trying Gemini API...")
+        return get_recipe_recommendations_gemini(selected)
+
+    except Exception as gemini_error:
+        # Includes no internet, DNS failure, timeout, invalid API key,
+        # rate limit/quota errors, and malformed Gemini response.
+        print("Gemini unavailable; using existing CSV system:", str(gemini_error))
+
+    try:
+        recipes = get_recipe_recommendations_csv(selected)
+        print("OFFLINE/FALLBACK MODE: CSV | Recipes:", len(recipes))
+        return recipes
+
+    except Exception as csv_error:
+        print("CSV fallback also failed:", str(csv_error))
+        return []
+
+
+@app.route("/api/gemini/status", methods=["GET"])
+def gemini_status():
+    """Safe diagnostic endpoint; never returns the API key."""
+    return jsonify({
+        "configured": bool(os.environ.get("GEMINI_API_KEY", "").strip()),
+        "model": os.environ.get("GEMINI_MODEL", "gemini-3.1-flash-lite").strip(),
+        "env_file": os.path.isfile(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+        )
+    })
+
+
 # -------------------------------
 # Configuration
 # -------------------------------
@@ -2783,23 +3261,27 @@ def detect():
 
         formatted_recipes.append({
 
-            "recipe_name":
-                recipe_name,
+            "recipe_name": recipe_name,
+            "score": score,
+            "matched_ingredients": matched_ingredients,
+            "total_ingredients": total_ingredients,
+            "recommended_ingredients": recommended_ingredients,
+            "combination": combination,
 
-            "score":
-                score,
-
-            "matched_ingredients":
-                matched_ingredients,
-
-            "total_ingredients":
-                total_ingredients,
-
-            "recommended_ingredients":
-                recommended_ingredients,
-
-            "combination":
-                combination
+            # Preserve complete recipe data for the recipe-detail screen.
+            "percentage": recipe.get("percentage", 0),
+            "final_score": recipe.get("final_score", score),
+            "matched": recipe.get("matched", []),
+            "required": recipe.get("required", []),
+            "missing": recipe.get("missing", []),
+            "primary_ingredient": recipe.get("primary_ingredient", ""),
+            "primary_available": recipe.get("primary_available", False),
+            "ingredients": recipe.get("ingredients", []),
+            "steps": recipe.get("steps", []),
+            "nutrition": recipe.get("nutrition", {}),
+            "persons": recipe.get("persons", 2),
+            "nutrition_persons": recipe.get("nutrition_persons", 2),
+            "source": recipe.get("source", "csv")
 
         })
 
@@ -2843,7 +3325,12 @@ def detect():
             ingredients,
 
         "recipes":
-            formatted_recipes
+            formatted_recipes,
+
+        "recipe_source": (
+            "gemini" if any(r.get("source") == "gemini" for r in formatted_recipes)
+            else "csv"
+        )
 
     })
 # Home
